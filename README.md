@@ -23,13 +23,13 @@ A fast-paced 1v1 local multiplayer arena game. Each player controls a monkey, ai
 
 Default layout (can be adjusted in Project Settings):
 
-- Player 1 (Keyboard/Mouse) // UNDER CONSTRUCTION //
+- Keyboard/Mouse // UNDER CONSTRUCTION //
   - Move: WASD
   - Aim: Mouse
   - Throw: Left Mouse (action: `throw_rock`)
   - Jump/Dodge (once enabled): Space/Shift/Right Mouse
 
-- Player 2 (Gamepad)
+- Gamepad
   - Move: Left Stick
   - Aim: Right Stick
   - Throw: R2/RT
