@@ -103,4 +103,4 @@ scenes/
 
 ## License
 
-This project is provided for learning and jam development. Modify and reuse as you like.
+This project is provided for learning and jam development. Modification and reuse for non-commercial purposes is permitted.
