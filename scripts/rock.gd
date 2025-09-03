@@ -51,6 +51,7 @@ func _physics_process(_delta: float) -> void:
 			print('Rock hit an object!')
 			_stop_rock(0.5)
 
+
 func throw(monkey: Monkey) -> void:
 	parent = monkey
 	_manage_player_collision(false)
@@ -58,6 +59,7 @@ func throw(monkey: Monkey) -> void:
 	direction = (parent.crosshair.global_position - parent.global_position).normalized()
 	linear_velocity = direction * throw_strength
 	thrown = true
+
 
 func _stop_rock(timer_wait_time: float = 0.3) -> void:
 	_manage_player_collision(true)
@@ -71,6 +73,7 @@ func _stop_rock(timer_wait_time: float = 0.3) -> void:
 	)
 	add_child(stop_timer)
 	stop_timer.start()
+
 
 func _manage_player_collision(enabled: bool) -> void:
 	set_collision_mask_value(parent.player_id, enabled)
