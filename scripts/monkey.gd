@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Monkey
 
 @export var rocks: int = 3
-@export var speed: float = 150
+@export var speed: float = 155
 @export var jump_strength: float = 1000
 @export var aim_radius: float = 35
 
@@ -116,7 +116,10 @@ func _process(_delta: float) -> void:
 		crosshair.global_position = global_position + aim_dir.normalized() * aim_radius
 	else:
 		crosshair.visible = false
-		crosshair.global_position = global_position + direction * aim_radius
+		if direction != Vector2.ZERO:
+			crosshair.global_position = global_position + direction * aim_radius
+		else:
+			crosshair.global_position = Vector2(global_position.x, global_position.y + aim_radius)
 
 # TODO: Fix mouse input!
 		# var mouse_pos: Vector2 = input_handler.mouse_position()

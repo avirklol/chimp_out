@@ -30,7 +30,6 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 			print(str(body.name) + ' is stunned!')
 			print(sign((body.global_position - global_position).normalized()))
 			body.state = states.STUNNED
-			_stop_rock()
 		else:
 			if body.state not in [states.STUNNED, states.RECOVERING, states.JUMPING]:
 				print(str(body.name) + ' picked up a rock!')
@@ -43,14 +42,14 @@ func _physics_process(_delta: float) -> void:
 		var distance_traveled = global_position.distance_to(start_position)
 
 		if distance_traveled > max_distance:
-			_stop_rock()
+			_stop_rock(0.1)
 
 		if linear_velocity.length() > 0:
 			global_rotation_degrees = linear_velocity.angle() * 180 / PI
 
 		if get_contact_count():
 			print('Rock hit an object!')
-			_stop_rock()
+			_stop_rock(0.5)
 
 func throw(monkey: Monkey) -> void:
 	parent = monkey
@@ -60,10 +59,10 @@ func throw(monkey: Monkey) -> void:
 	linear_velocity = direction * throw_strength
 	thrown = true
 
-func _stop_rock() -> void:
+func _stop_rock(timer_wait_time: float = 0.3) -> void:
 	_manage_player_collision(true)
 	var stop_timer := Timer.new()
-	stop_timer.wait_time = 0.3
+	stop_timer.wait_time = timer_wait_time
 	stop_timer.one_shot = true
 	stop_timer.timeout.connect(func():
 		linear_velocity = Vector2.ZERO
