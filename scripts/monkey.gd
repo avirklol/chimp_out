@@ -8,7 +8,6 @@ class_name Monkey
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
-@onready var input_handler: InputHandler = $InputHandler
 @onready var crosshair: Sprite2D = $Crosshair
 @onready var crosshair_wall_check: ShapeCast2D = %CrosshairWallCheck
 @onready var jump_timer: Timer = $JumpTimer
@@ -53,7 +52,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if state in [States.STUNNED, States.RECOVERING]:
 		return
 
-	if input_handler.move_direction(player_id) != Vector2.ZERO:
+	if IH.move_direction(player_id) != Vector2.ZERO:
 		if !Input.is_action_pressed("jump"):
 			state = States.MOVING
 		else:
@@ -61,7 +60,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	else:
 		state = States.IDLE
 
-	if input_handler.throw_rock(player_id) and _can_throw_rock():
+	if IH.throw_rock(player_id) and _can_throw_rock():
 		_throw_rock()
 
 
@@ -80,7 +79,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	var direction = input_handler.move_direction(player_id)
+	var direction = IH.move_direction(player_id)
 
 	match state:
 		States.MOVING:
@@ -109,7 +108,7 @@ func _process(_delta: float) -> void:
 		States.RECOVERING:
 			animations.play("recovering")
 
-	var aim_dir: Vector2 = input_handler.aim_direction(player_id)
+	var aim_dir: Vector2 = IH.aim_direction(player_id)
 
 	if aim_dir != Vector2.ZERO:
 		crosshair.visible = true
@@ -122,13 +121,13 @@ func _process(_delta: float) -> void:
 			crosshair.global_position = Vector2(global_position.x, global_position.y + aim_radius)
 
 # TODO: Fix mouse input!
-		# var mouse_pos: Vector2 = input_handler.mouse_position()
+		# var mouse_pos: Vector2 = IH.mouse_position()
 		# var to_mouse: Vector2 = (mouse_pos - global_position)
 		# crosshair.global_position = global_position + to_mouse.limit_length(radius)
 
 
 func _move(_delta: float) -> void:
-	velocity = input_handler.move_direction(player_id) * speed
+	velocity = IH.move_direction(player_id) * speed
 	move_and_slide()
 
 
