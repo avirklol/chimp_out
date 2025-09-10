@@ -1,0 +1,252 @@
+[gd_scene load_steps=7 format=3 uid="uid://fywen4goslwu"]
+
+[ext_resource type="FontFile" uid="uid://djts2giqhklm6" path="res://assets/fonts/handjet/Handjet-Regular.ttf" id="1_stxvw"]
+[ext_resource type="FontFile" uid="uid://fviplagdc8bw" path="res://assets/fonts/handjet/Handjet-Light.ttf" id="2_56yov"]
+[ext_resource type="FontFile" uid="uid://d3wp21mib3e8s" path="res://assets/fonts/handjet/Handjet-ExtraBold.ttf" id="3_u03e6"]
+[ext_resource type="Texture2D" uid="uid://dqx30o5qs1gxh" path="res://assets/ui/HandUp.png" id="4_uxqos"]
+[ext_resource type="Texture2D" uid="uid://gbtemd1s04bd" path="res://assets/ui/HandDown.png" id="5_ksdp2"]
+
+[sub_resource type="Theme" id="Theme_jhubc"]
+
+[node name="MonkeySelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="P1" type="RichTextLabel" parent="HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 5
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_jhubc")
+theme_override_fonts/normal_font = ExtResource("1_stxvw")
+theme_override_fonts/mono_font = ExtResource("2_56yov")
+theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 122
+bbcode_enabled = true
+text = "PRESS START"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P2" type="RichTextLabel" parent="HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 5
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_jhubc")
+theme_override_fonts/normal_font = ExtResource("1_stxvw")
+theme_override_fonts/mono_font = ExtResource("2_56yov")
+theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 122
+bbcode_enabled = true
+text = "PRESS START"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P3" type="RichTextLabel" parent="HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 5
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_jhubc")
+theme_override_fonts/normal_font = ExtResource("1_stxvw")
+theme_override_fonts/mono_font = ExtResource("2_56yov")
+theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 122
+bbcode_enabled = true
+text = "PRESS START"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P4" type="RichTextLabel" parent="HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 5
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_jhubc")
+theme_override_fonts/normal_font = ExtResource("1_stxvw")
+theme_override_fonts/mono_font = ExtResource("2_56yov")
+theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 122
+bbcode_enabled = true
+text = "PRESS START"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="P1R" type="RichTextLabel" parent="HBoxContainer2"]
+texture_filter = 5
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_jhubc")
+theme_override_fonts/normal_font = ExtResource("1_stxvw")
+theme_override_fonts/mono_font = ExtResource("2_56yov")
+theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 122
+bbcode_enabled = true
+text = "READY"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P2R" type="RichTextLabel" parent="HBoxContainer2"]
+texture_filter = 5
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_jhubc")
+theme_override_fonts/normal_font = ExtResource("1_stxvw")
+theme_override_fonts/mono_font = ExtResource("2_56yov")
+theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 122
+bbcode_enabled = true
+text = "READY"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P3R" type="RichTextLabel" parent="HBoxContainer2"]
+texture_filter = 5
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_jhubc")
+theme_override_fonts/normal_font = ExtResource("1_stxvw")
+theme_override_fonts/mono_font = ExtResource("2_56yov")
+theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 122
+bbcode_enabled = true
+text = "READY"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P4R" type="RichTextLabel" parent="HBoxContainer2"]
+texture_filter = 5
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_jhubc")
+theme_override_fonts/normal_font = ExtResource("1_stxvw")
+theme_override_fonts/mono_font = ExtResource("2_56yov")
+theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 122
+bbcode_enabled = true
+text = "READY"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="P1S" type="VBoxContainer" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="PointerUp" type="TextureRect" parent="HBoxContainer3/P1S"]
+texture_filter = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("4_uxqos")
+
+[node name="MonkeySelection" type="TextureRect" parent="HBoxContainer3/P1S"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="PointerDown" type="TextureRect" parent="HBoxContainer3/P1S"]
+texture_filter = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("5_ksdp2")
+
+[node name="P2S" type="VBoxContainer" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="P3S" type="VBoxContainer" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="P4S" type="VBoxContainer" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
