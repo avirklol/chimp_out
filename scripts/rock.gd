@@ -6,12 +6,14 @@ class_name Rock
 
 @onready var hit_area: Area2D = $HitArea
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var column_check: ShapeCast2D = $ColumnCheck
 
 
 var parent: Monkey
 var states:= Monkey.States
 var direction: Vector2
 var start_position: Vector2
+var final_velocity: Vector2
 var thrown: bool
 
 
@@ -50,11 +52,17 @@ func _physics_process(_delta: float) -> void:
 		if get_contact_count():
 			print('Rock hit an object!')
 			_stop_rock(0.5)
+	else:
+		if column_check.is_colliding():
+			freeze = false
+			apply_central_impulse(Vector2(sign(randf_range(-1, 1)), sign(randf_range(-1, 1))) * 100)
+		else:
+			freeze = true
 
 
 func throw(monkey: Monkey) -> void:
 	parent = monkey
-	_manage_player_collision(false)
+	_parent_collision_enabled(false)
 	start_position = global_position
 	direction = (parent.crosshair.global_position - parent.global_position).normalized()
 	linear_velocity = direction * throw_strength
@@ -62,11 +70,12 @@ func throw(monkey: Monkey) -> void:
 
 
 func _stop_rock(timer_wait_time: float = 0.3) -> void:
-	_manage_player_collision(true)
+	_parent_collision_enabled(true)
 	var stop_timer := Timer.new()
 	stop_timer.wait_time = timer_wait_time
 	stop_timer.one_shot = true
 	stop_timer.timeout.connect(func():
+		final_velocity = linear_velocity
 		linear_velocity = Vector2.ZERO
 		thrown = false
 		freeze = true
@@ -75,6 +84,6 @@ func _stop_rock(timer_wait_time: float = 0.3) -> void:
 	stop_timer.start()
 
 
-func _manage_player_collision(enabled: bool) -> void:
+func _parent_collision_enabled(enabled: bool) -> void:
 	set_collision_mask_value(parent.player_id, enabled)
 	hit_area.set_collision_mask_value(parent.player_id, enabled)
