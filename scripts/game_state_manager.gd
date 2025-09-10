@@ -5,12 +5,18 @@ signal game_start
 signal game_end
 
 @export var sprite_sheets: Array[Resource] = []
+
 @onready var monkey_scene: PackedScene = preload("res://scenes/monkey.tscn")
 
+enum States { TITLE, PLAYER_SELECTION, GAME, END}
+
+var state: States = States.TITLE
 var game_started: bool = false
 var game_ended: bool = false
+var round_number: int = 1
 var players: Dictionary = {}
 var spawn_points: Array[Node] = []
+
 
 
 func _ready() -> void:
