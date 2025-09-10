@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8oc0bmjpu6aa"]
+
+[ext_resource type="Script" uid="uid://cw15w2co4neiv" path="res://scripts/title_screen.gd" id="1_3yumr"]
+[ext_resource type="FontFile" uid="uid://djts2giqhklm6" path="res://assets/fonts/handjet/Handjet-Regular.ttf" id="1_s4lrb"]
+[ext_resource type="FontFile" uid="uid://fviplagdc8bw" path="res://assets/fonts/handjet/Handjet-Light.ttf" id="2_mgrm8"]
+[ext_resource type="FontFile" uid="uid://dilbnyphhx3p0" path="res://assets/fonts/handjet/Handjet-Bold.ttf" id="3_dc4i4"]
+[ext_resource type="FontFile" uid="uid://d3wp21mib3e8s" path="res://assets/fonts/handjet/Handjet-ExtraBold.ttf" id="3_e54dn"]
+[ext_resource type="Theme" uid="uid://b007pb701cwk5" path="res://themes/basic_titles.tres" id="4_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://b1f2rp3xpb6to" path="res://assets/ui/HandRight.png" id="6_e54dn"]
+
+[sub_resource type="Theme" id="Theme_1a2ex"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3yumr")
+
+[node name="Title" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -159.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_1a2ex")
+theme_override_fonts/normal_font = ExtResource("1_s4lrb")
+theme_override_fonts/mono_font = ExtResource("2_mgrm8")
+theme_override_fonts/bold_font = ExtResource("3_e54dn")
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 122
+bbcode_enabled = true
+text = "[b]CHIMP OUT[/b]"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -28.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_1a2ex")
+theme_override_fonts/normal_font = ExtResource("1_s4lrb")
+theme_override_fonts/mono_font = ExtResource("2_mgrm8")
+theme_override_fonts/bold_font = ExtResource("3_dc4i4")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "START"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = 14.0
+offset_right = 1.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_mgrm8")
+theme_override_fonts/normal_font = ExtResource("1_s4lrb")
+theme_override_fonts/mono_font = ExtResource("2_mgrm8")
+theme_override_fonts/bold_font = ExtResource("3_dc4i4")
+theme_override_font_sizes/normal_font_size = 50
+text = "QUIT"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Pointer" type="TextureRect" parent="."]
+unique_name_in_owner = true
+texture_filter = 3
+layout_mode = 0
+offset_left = 457.0
+offset_top = 528.0
+offset_right = 497.0
+offset_bottom = 568.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_e54dn")
