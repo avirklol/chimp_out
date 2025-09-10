@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2k3qwp7esmrd"]
+[gd_scene load_steps=6 format=3 uid="uid://d2k3qwp7esmrd"]
 
 [ext_resource type="Script" uid="uid://wpknemba467p" path="res://scripts/monkey.gd" id="1_aubuo"]
 [ext_resource type="SpriteFrames" uid="uid://bgg0y7sity53s" path="res://assets/monkey/spriteframes/monkey_1.tres" id="2_vmjsb"]
-[ext_resource type="Script" uid="uid://gxcwctr1k8u4" path="res://scripts/input_handler.gd" id="3_vmjsb"]
 [ext_resource type="Texture2D" uid="uid://harf0jdyh4in" path="res://assets/monkey/crosshair.png" id="4_2l80e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yqeq"]
@@ -30,9 +29,6 @@ autoplay = "idle"
 position = Vector2(0, 0.5)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_0yqeq")
-
-[node name="InputHandler" type="Node" parent="."]
-script = ExtResource("3_vmjsb")
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 texture_filter = 1
