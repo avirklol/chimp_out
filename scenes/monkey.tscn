@@ -22,7 +22,7 @@ rocks = 100
 texture_filter = 5
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("2_vmjsb")
-animation = &"stunned"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
