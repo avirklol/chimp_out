@@ -37,6 +37,6 @@ func _process_selection() -> void:
 	if Input.is_action_just_pressed("start") or Input.is_action_just_pressed("select"):
 		match option_index:
 			0:
-				GSM.state = GSM.States.GAME
+				GM.state = GM.States.PLAYER_SELECTION
 			1:
 				get_tree().quit()
