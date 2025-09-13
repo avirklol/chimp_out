@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://fywen4goslwu"]
+[gd_scene load_steps=6 format=3 uid="uid://fywen4goslwu"]
 
+[ext_resource type="Script" uid="uid://bbvcvgk8n4onq" path="res://scripts/monkey_select.gd" id="1_6xyja"]
 [ext_resource type="FontFile" uid="uid://djts2giqhklm6" path="res://assets/fonts/handjet/Handjet-Regular.ttf" id="1_stxvw"]
 [ext_resource type="FontFile" uid="uid://fviplagdc8bw" path="res://assets/fonts/handjet/Handjet-Light.ttf" id="2_56yov"]
 [ext_resource type="FontFile" uid="uid://d3wp21mib3e8s" path="res://assets/fonts/handjet/Handjet-ExtraBold.ttf" id="3_u03e6"]
-[ext_resource type="Texture2D" uid="uid://dqx30o5qs1gxh" path="res://assets/ui/HandUp.png" id="4_uxqos"]
-[ext_resource type="Texture2D" uid="uid://gbtemd1s04bd" path="res://assets/ui/HandDown.png" id="5_ksdp2"]
 
 [sub_resource type="Theme" id="Theme_jhubc"]
 
@@ -15,22 +14,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6xyja")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -128.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="P1" type="RichTextLabel" parent="HBoxContainer"]
+[node name="PlayerJoin" type="Control" parent="."]
 unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="P1" type="RichTextLabel" parent="PlayerJoin"]
 texture_filter = 5
 layout_mode = 2
+offset_top = 447.0
+offset_right = 270.0
+offset_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
@@ -48,10 +45,13 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="P2" type="RichTextLabel" parent="HBoxContainer"]
-unique_name_in_owner = true
+[node name="P2" type="RichTextLabel" parent="PlayerJoin"]
 texture_filter = 5
 layout_mode = 2
+offset_left = 270.0
+offset_top = 447.0
+offset_right = 540.0
+offset_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
@@ -69,10 +69,13 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="P3" type="RichTextLabel" parent="HBoxContainer"]
-unique_name_in_owner = true
+[node name="P3" type="RichTextLabel" parent="PlayerJoin"]
 texture_filter = 5
 layout_mode = 2
+offset_left = 540.0
+offset_top = 447.0
+offset_right = 810.0
+offset_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
@@ -90,10 +93,13 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="P4" type="RichTextLabel" parent="HBoxContainer"]
-unique_name_in_owner = true
+[node name="P4" type="RichTextLabel" parent="PlayerJoin"]
 texture_filter = 5
 layout_mode = 2
+offset_left = 810.0
+offset_top = 447.0
+offset_right = 1080.0
+offset_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
@@ -111,20 +117,64 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 72.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-alignment = 1
+[node name="MonkeySprite" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="P1R" type="RichTextLabel" parent="HBoxContainer2"]
+[node name="P1M" type="Control" parent="MonkeySprite"]
+layout_mode = 2
+anchors_preset = 0
+offset_top = 476.0
+offset_right = 270.0
+offset_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="P2M" type="Control" parent="MonkeySprite"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 270.0
+offset_top = 476.0
+offset_right = 540.0
+offset_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="P3M" type="Control" parent="MonkeySprite"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 540.0
+offset_top = 476.0
+offset_right = 810.0
+offset_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="P4M" type="Control" parent="MonkeySprite"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 810.0
+offset_top = 476.0
+offset_right = 1080.0
+offset_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="PlayerReady" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="P1R" type="RichTextLabel" parent="PlayerReady"]
 texture_filter = 5
 layout_mode = 2
+offset_left = -2.0
+offset_top = 512.0
+offset_right = 268.0
+offset_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
@@ -142,9 +192,13 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="P2R" type="RichTextLabel" parent="HBoxContainer2"]
+[node name="P2R" type="RichTextLabel" parent="PlayerReady"]
 texture_filter = 5
 layout_mode = 2
+offset_left = 268.0
+offset_top = 512.0
+offset_right = 538.0
+offset_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
@@ -162,9 +216,13 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="P3R" type="RichTextLabel" parent="HBoxContainer2"]
+[node name="P3R" type="RichTextLabel" parent="PlayerReady"]
 texture_filter = 5
 layout_mode = 2
+offset_left = 538.0
+offset_top = 512.0
+offset_right = 808.0
+offset_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
@@ -182,9 +240,13 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="P4R" type="RichTextLabel" parent="HBoxContainer2"]
+[node name="P4R" type="RichTextLabel" parent="PlayerReady"]
 texture_filter = 5
 layout_mode = 2
+offset_left = 808.0
+offset_top = 512.0
+offset_right = 1078.0
+offset_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
@@ -201,52 +263,3 @@ scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -128.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="P1S" type="VBoxContainer" parent="HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_constants/separation = 40
-
-[node name="PointerUp" type="TextureRect" parent="HBoxContainer3/P1S"]
-texture_filter = 3
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-texture = ExtResource("4_uxqos")
-
-[node name="MonkeySelection" type="TextureRect" parent="HBoxContainer3/P1S"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="PointerDown" type="TextureRect" parent="HBoxContainer3/P1S"]
-texture_filter = 3
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-texture = ExtResource("5_ksdp2")
-
-[node name="P2S" type="VBoxContainer" parent="HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="P3S" type="VBoxContainer" parent="HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="P4S" type="VBoxContainer" parent="HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
