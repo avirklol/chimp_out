@@ -1,9 +1,0 @@
-[gd_scene load_steps=4 format=3 uid="uid://clke6n4spr0ba"]
-
-[ext_resource type="Script" uid="uid://cggm83eqghjv7" path="res://scripts/game_state_manager.gd" id="1_4hkbw"]
-[ext_resource type="SpriteFrames" uid="uid://bgg0y7sity53s" path="res://assets/monkey/spriteframes/monkey_1.tres" id="2_88jix"]
-[ext_resource type="SpriteFrames" uid="uid://dl0vvpv7dsqem" path="res://assets/monkey/spriteframes/monkey_2.tres" id="3_hla2y"]
-
-[node name="GameStateManager" type="Node"]
-script = ExtResource("1_4hkbw")
-sprite_sheets = Array[Resource]([ExtResource("2_88jix"), ExtResource("3_hla2y")])
