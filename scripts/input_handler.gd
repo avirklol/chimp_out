@@ -1,6 +1,8 @@
 extends Node
 class_name InputHandler
 
+
+# Monkey Gameplay
 func move_direction(player_id: int) -> Vector2:
     return Vector2(sign(Input.get_axis("move_left%d" % player_id, "move_right%d" % player_id)), sign(Input.get_axis("move_up%d" % player_id, "move_down%d" % player_id)))
 
