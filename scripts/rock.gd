@@ -52,6 +52,7 @@ func _physics_process(_delta: float) -> void:
 		if get_contact_count():
 			print('Rock hit an object!')
 			_stop_rock(0.5)
+
 	else:
 		if column_check.is_colliding():
 			freeze = false
