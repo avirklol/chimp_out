@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://carknab8g2mew"]
+[gd_scene load_steps=8 format=3 uid="uid://carknab8g2mew"]
 
 [ext_resource type="Script" uid="uid://qpk6t151nqy3" path="res://scripts/player_manager.gd" id="1_8asdu"]
+[ext_resource type="SpriteFrames" uid="uid://bgg0y7sity53s" path="res://assets/monkey/spriteframes/monkey_1.tres" id="2_2q8r0"]
+[ext_resource type="SpriteFrames" uid="uid://dl0vvpv7dsqem" path="res://assets/monkey/spriteframes/monkey_2.tres" id="3_cxir3"]
+[ext_resource type="SpriteFrames" uid="uid://dbiksoem487ic" path="res://assets/monkey/spriteframes/monkey_3.tres" id="4_cx64s"]
+[ext_resource type="SpriteFrames" uid="uid://b2ax10v5k7srw" path="res://assets/monkey/spriteframes/monkey_4.tres" id="5_keqpo"]
+[ext_resource type="SpriteFrames" uid="uid://sq2vobi5rgbd" path="res://assets/monkey/spriteframes/monkey_5.tres" id="6_okspr"]
+[ext_resource type="SpriteFrames" uid="uid://cwc6wayi47sck" path="res://assets/monkey/spriteframes/monkey_6.tres" id="7_2gbos"]
 
 [node name="PlayerManager" type="Node"]
 script = ExtResource("1_8asdu")
+sprite_sheets = Array[Dictionary]([{
+"frames": ExtResource("2_2q8r0"),
+"player_id": 0
+}, {
+"frames": ExtResource("3_cxir3"),
+"player_id": 0
+}, {
+"frames": ExtResource("4_cx64s"),
+"player_id": 0
+}, {
+"frames": ExtResource("5_keqpo"),
+"player_id": 0
+}, {
+"frames": ExtResource("6_okspr"),
+"player_id": 0
+}, {
+"frames": ExtResource("7_2gbos"),
+"player_id": 0
+}])
