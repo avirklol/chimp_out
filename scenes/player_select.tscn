@@ -1,23 +1,23 @@
 [gd_scene load_steps=8 format=3 uid="uid://fywen4goslwu"]
 
-[ext_resource type="Script" uid="uid://bbvcvgk8n4onq" path="res://scripts/monkey_select.gd" id="1_6xyja"]
-[ext_resource type="FontFile" uid="uid://djts2giqhklm6" path="res://assets/fonts/handjet/Handjet-Regular.ttf" id="1_stxvw"]
-[ext_resource type="FontFile" uid="uid://fviplagdc8bw" path="res://assets/fonts/handjet/Handjet-Light.ttf" id="2_56yov"]
-[ext_resource type="Texture2D" uid="uid://bqsj8l8dp0rxl" path="res://assets/ui/CheckboxChecked.png" id="3_rkcrd"]
-[ext_resource type="FontFile" uid="uid://d3wp21mib3e8s" path="res://assets/fonts/handjet/Handjet-ExtraBold.ttf" id="3_u03e6"]
-[ext_resource type="Texture2D" uid="uid://cvuoamer6kwrk" path="res://assets/ui/CheckboxUnchecked.png" id="5_21n78"]
+[ext_resource type="Script" uid="uid://bbvcvgk8n4onq" path="res://scripts/player_select.gd" id="1_73uf3"]
+[ext_resource type="Texture2D" uid="uid://cvuoamer6kwrk" path="res://assets/ui/CheckboxUnchecked.png" id="2_1gcv8"]
+[ext_resource type="Texture2D" uid="uid://bqsj8l8dp0rxl" path="res://assets/ui/CheckboxChecked.png" id="3_bmol8"]
+[ext_resource type="FontFile" uid="uid://djts2giqhklm6" path="res://assets/fonts/handjet/Handjet-Regular.ttf" id="4_skkxd"]
+[ext_resource type="FontFile" uid="uid://fviplagdc8bw" path="res://assets/fonts/handjet/Handjet-Light.ttf" id="5_pv64f"]
+[ext_resource type="FontFile" uid="uid://d3wp21mib3e8s" path="res://assets/fonts/handjet/Handjet-ExtraBold.ttf" id="6_b4a5m"]
 
 [sub_resource type="Theme" id="Theme_jhubc"]
 
-[node name="MonkeySelect" type="Control"]
+[node name="PlayerSelect" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6xyja")
-checkbox_textures = Array[Resource]([ExtResource("5_21n78"), ExtResource("3_rkcrd")])
+script = ExtResource("1_73uf3")
+checkbox_textures = Array[Resource]([ExtResource("2_1gcv8"), ExtResource("3_bmol8")])
 
 [node name="PlayerJoin" type="Control" parent="."]
 unique_name_in_owner = true
@@ -34,9 +34,9 @@ offset_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
-theme_override_fonts/normal_font = ExtResource("1_stxvw")
-theme_override_fonts/mono_font = ExtResource("2_56yov")
-theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_fonts/normal_font = ExtResource("4_skkxd")
+theme_override_fonts/mono_font = ExtResource("5_pv64f")
+theme_override_fonts/bold_font = ExtResource("6_b4a5m")
 theme_override_font_sizes/bold_italics_font_size = 100
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 122
@@ -58,9 +58,9 @@ offset_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
-theme_override_fonts/normal_font = ExtResource("1_stxvw")
-theme_override_fonts/mono_font = ExtResource("2_56yov")
-theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_fonts/normal_font = ExtResource("4_skkxd")
+theme_override_fonts/mono_font = ExtResource("5_pv64f")
+theme_override_fonts/bold_font = ExtResource("6_b4a5m")
 theme_override_font_sizes/bold_italics_font_size = 100
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 122
@@ -82,9 +82,9 @@ offset_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
-theme_override_fonts/normal_font = ExtResource("1_stxvw")
-theme_override_fonts/mono_font = ExtResource("2_56yov")
-theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_fonts/normal_font = ExtResource("4_skkxd")
+theme_override_fonts/mono_font = ExtResource("5_pv64f")
+theme_override_fonts/bold_font = ExtResource("6_b4a5m")
 theme_override_font_sizes/bold_italics_font_size = 100
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 122
@@ -106,9 +106,9 @@ offset_bottom = 504.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
-theme_override_fonts/normal_font = ExtResource("1_stxvw")
-theme_override_fonts/mono_font = ExtResource("2_56yov")
-theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_fonts/normal_font = ExtResource("4_skkxd")
+theme_override_fonts/mono_font = ExtResource("5_pv64f")
+theme_override_fonts/bold_font = ExtResource("6_b4a5m")
 theme_override_font_sizes/bold_italics_font_size = 100
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 122
@@ -181,9 +181,9 @@ offset_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
-theme_override_fonts/normal_font = ExtResource("1_stxvw")
-theme_override_fonts/mono_font = ExtResource("2_56yov")
-theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_fonts/normal_font = ExtResource("4_skkxd")
+theme_override_fonts/mono_font = ExtResource("5_pv64f")
+theme_override_fonts/bold_font = ExtResource("6_b4a5m")
 theme_override_font_sizes/bold_italics_font_size = 100
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 122
@@ -202,7 +202,7 @@ offset_left = 187.0
 offset_top = 9.0
 offset_right = 227.0
 offset_bottom = 49.0
-texture = ExtResource("5_21n78")
+texture = ExtResource("2_1gcv8")
 
 [node name="PCR" type="TextureRect" parent="PlayerReady/PR1/PC"]
 texture_filter = 3
@@ -217,7 +217,7 @@ offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_rkcrd")
+texture = ExtResource("3_bmol8")
 
 [node name="PR2" type="RichTextLabel" parent="PlayerReady"]
 texture_filter = 5
@@ -229,9 +229,9 @@ offset_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
-theme_override_fonts/normal_font = ExtResource("1_stxvw")
-theme_override_fonts/mono_font = ExtResource("2_56yov")
-theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_fonts/normal_font = ExtResource("4_skkxd")
+theme_override_fonts/mono_font = ExtResource("5_pv64f")
+theme_override_fonts/bold_font = ExtResource("6_b4a5m")
 theme_override_font_sizes/bold_italics_font_size = 100
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 122
@@ -250,7 +250,7 @@ offset_left = 188.0
 offset_top = 9.0
 offset_right = 228.0
 offset_bottom = 49.0
-texture = ExtResource("5_21n78")
+texture = ExtResource("2_1gcv8")
 
 [node name="PCR" type="TextureRect" parent="PlayerReady/PR2/PC"]
 texture_filter = 3
@@ -265,7 +265,7 @@ offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_rkcrd")
+texture = ExtResource("3_bmol8")
 
 [node name="PR3" type="RichTextLabel" parent="PlayerReady"]
 texture_filter = 5
@@ -277,9 +277,9 @@ offset_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
-theme_override_fonts/normal_font = ExtResource("1_stxvw")
-theme_override_fonts/mono_font = ExtResource("2_56yov")
-theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_fonts/normal_font = ExtResource("4_skkxd")
+theme_override_fonts/mono_font = ExtResource("5_pv64f")
+theme_override_fonts/bold_font = ExtResource("6_b4a5m")
 theme_override_font_sizes/bold_italics_font_size = 100
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 122
@@ -298,7 +298,7 @@ offset_left = 190.0
 offset_top = 9.0
 offset_right = 230.0
 offset_bottom = 49.0
-texture = ExtResource("5_21n78")
+texture = ExtResource("2_1gcv8")
 
 [node name="PCR" type="TextureRect" parent="PlayerReady/PR3/PC"]
 texture_filter = 3
@@ -313,7 +313,7 @@ offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_rkcrd")
+texture = ExtResource("3_bmol8")
 
 [node name="PR4" type="RichTextLabel" parent="PlayerReady"]
 texture_filter = 5
@@ -325,9 +325,9 @@ offset_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_jhubc")
-theme_override_fonts/normal_font = ExtResource("1_stxvw")
-theme_override_fonts/mono_font = ExtResource("2_56yov")
-theme_override_fonts/bold_font = ExtResource("3_u03e6")
+theme_override_fonts/normal_font = ExtResource("4_skkxd")
+theme_override_fonts/mono_font = ExtResource("5_pv64f")
+theme_override_fonts/bold_font = ExtResource("6_b4a5m")
 theme_override_font_sizes/bold_italics_font_size = 100
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 122
@@ -346,7 +346,7 @@ offset_left = 187.0
 offset_top = 9.0
 offset_right = 227.0
 offset_bottom = 49.0
-texture = ExtResource("5_21n78")
+texture = ExtResource("2_1gcv8")
 
 [node name="PCR" type="TextureRect" parent="PlayerReady/PR4/PC"]
 texture_filter = 3
@@ -361,4 +361,4 @@ offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_rkcrd")
+texture = ExtResource("3_bmol8")

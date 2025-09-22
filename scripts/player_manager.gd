@@ -30,7 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if GM.state == GM.States.PLAYER_SELECTION:
 		if event is InputEventJoypadButton:
-			if event.button_index == JOY_BUTTON_START or event.button_index == JOY_BUTTON_A:
+			if event.button_index == JOY_BUTTON_START:
 				if !device_player_map.has(device_id):
 					for player in players:
 						if !player["joined"]:

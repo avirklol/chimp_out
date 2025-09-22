@@ -1,5 +1,5 @@
 extends Control
-class_name MonkeySelect
+class_name PlayerSelect
 
 @export var checkbox_textures: Array[Resource]
 
@@ -63,10 +63,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if !_player_count():
 		if event.is_action_pressed("back"):
 			GM.state = GM.States.TITLE
-
-
-func _process(_delta: float) -> void:
-	pass
 
 
 func _on_player_joined(player_id: int, _device_id: int, player_index: int) -> void:
