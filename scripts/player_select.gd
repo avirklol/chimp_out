@@ -7,12 +7,13 @@ var player_join_labels: Array[Node]
 var player_joined_sprite_location: Array[Node]
 var player_ready_labels: Array[Node]
 var player_ready_checkboxes: Array[Node] = []
-var ready_players: int = 0
 
 
 func _ready() -> void:
 	PM.player_joined.connect(_on_player_joined)
 	PM.player_left.connect(_on_player_left)
+	PM.player_ready.connect(_on_player_ready)
+	PM.new_player_sprite.connect(_change_monkey_color)
 
 	player_join_labels = %PlayerJoin.get_children()
 	player_joined_sprite_location = %MonkeySprite.get_children()
@@ -35,34 +36,14 @@ func _ready() -> void:
 		checked.texture = checkbox_textures[1]
 		checked.visible = false
 
-func _unhandled_input(event: InputEvent) -> void:
-	var player_id = PM.get_player_id(event.device)
-	var player_index = PM.get_player_index(player_id)
-	var checked = player_ready_checkboxes[player_index].get_child(0)
 
-	if player_id != 0:
-		if event.is_echo():
-			return
+func _on_player_ready(_player_id: int, player_index: int, is_ready: bool) -> void:
+	var checkmark_sprite = player_ready_checkboxes[player_index].get_child(0)
 
-		if !checked.visible:
-			if event.is_action_pressed("move_up%d" % player_id):
-				_change_monkey_color(player_id, true)
-			elif event.is_action_pressed("move_down%d" % player_id):
-				_change_monkey_color(player_id)
-
-			if event.is_action_pressed("select%d" % player_id):
-				checked.visible = true
-				ready_players += 1
-
-		if checked.visible:
-			if event.is_action_pressed("back%d" % player_id):
-					checked.visible = false
-					ready_players -= 1
-
-
-	if !_player_count():
-		if event.is_action_pressed("back"):
-			GM.state = GM.States.TITLE
+	if is_ready:
+		checkmark_sprite.visible = true
+	else:
+		checkmark_sprite.visible = false
 
 
 func _on_player_joined(player_id: int, _device_id: int, player_index: int) -> void:
@@ -90,19 +71,9 @@ func _on_player_left(player_id: int, player_index: int) -> void:
 		monkey.queue_free()
 
 
-func _change_monkey_color(player_id: int, reverse: bool = false) -> void:
+func _change_monkey_color(player_id: int, _player_index: int, sprite: Resource) -> void:
 	var monkey = get_tree().current_scene.get_node_or_null("Player %d" % player_id)
 
 	if monkey:
-		monkey.sprite_frames = PM.get_next_available_sprite(player_id, reverse)
+		monkey.sprite_frames = sprite
 		monkey.animation = "idle"
-
-
-func _player_count() -> int:
-	var count: int = 0
-
-	for player in PM.players:
-		if player["joined"]:
-			count += 1
-
-	return count
