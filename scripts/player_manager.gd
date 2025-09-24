@@ -96,12 +96,11 @@ func _on_joy_connection_changed(device_id: int, connected: bool) -> void:
 func _remove_player(player_id: int, device_id: int) -> void:
 	var player_index: int = _get_player_index(player_id)
 
-	for player in players:
-		if player["player_id"] == player_id:
-			player["joined"] = false
-			player["device_id"] = null
-			player["monkey"] = null
-			break
+	players[player_index]["joined"] = false
+	players[player_index]["device_id"] = null
+	players[player_index]["monkey"] = null
+	players[player_index]["sprite"] = null
+	players[player_index]["points"] = 0
 
 	device_player_map.erase(device_id)
 
