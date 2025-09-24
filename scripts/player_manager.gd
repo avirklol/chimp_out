@@ -154,6 +154,7 @@ func _get_player_id(device_id: int) -> int:
 		return device_player_map[device_id]
 	return -1
 
+
 func _get_player_index(player_id: int) -> int:
 	for i in range(players.size()):
 		if players[i]["player_id"] == player_id:
