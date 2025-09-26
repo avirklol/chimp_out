@@ -1,11 +1,11 @@
 extends Control
 
+var option_index: int = 0
+
 @onready var title: RichTextLabel = %Title
 @onready var start: RichTextLabel = %Start
 @onready var quit: RichTextLabel = %Quit
 @onready var pointer: TextureRect = %Pointer
-
-var option_index: int = 0
 
 
 func _ready() -> void:

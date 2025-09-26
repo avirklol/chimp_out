@@ -1,5 +1,5 @@
-extends Control
 class_name PlayerSelect
+extends Control
 
 @export var checkbox_textures: Array[Resource]
 

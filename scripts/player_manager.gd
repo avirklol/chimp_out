@@ -1,5 +1,5 @@
-extends Node
 class_name PlayerManager
+extends Node
 
 signal player_joined(player_id: int, device_id: int, player_index: int)
 signal player_left(player_id: int, player_index: int)
@@ -8,13 +8,12 @@ signal new_player_sprite(player_id: int, player_index: int, sprite: Resource)
 
 @export var sprite_sheets: Array[Dictionary] = []
 
-@onready var monkey_scene: PackedScene = preload("res://scenes/monkey.tscn")
-
 var max_players: int = 4
 var players: Array[Dictionary] = []
 var device_player_map: Dictionary = {}
 var action_list: Array[StringName] = []
 
+@onready var monkey_scene: PackedScene = preload("res://scenes/monkey.tscn")
 
 func _ready() -> void:
 	action_list = InputMap.get_actions()

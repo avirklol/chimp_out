@@ -1,10 +1,18 @@
-extends CharacterBody2D
 class_name Monkey
+extends CharacterBody2D
+
+enum States { IDLE, MOVING, JUMPING, STUNNED, RECOVERING }
 
 @export var rocks: int = 3
 @export var speed: float = 155
 @export var jump_strength: float = 1000
 @export var aim_radius: float = 35
+
+var state: States = States.IDLE
+var rock_ready: bool = true
+var jump_ready: bool = true
+var player_id: int
+var device_id: int
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
@@ -13,15 +21,6 @@ class_name Monkey
 @onready var jump_timer: Timer = $JumpTimer
 @onready var rock_timer: Timer = $RockTimer
 @onready var rock: PackedScene = preload("res://scenes/rock.tscn")
-
-enum States { IDLE, MOVING, JUMPING, STUNNED, RECOVERING }
-
-var state: States = States.IDLE
-var rock_ready: bool = true
-var jump_ready: bool = true
-
-var player_id: int
-var device_id: int
 
 
 func _ready() -> void:
