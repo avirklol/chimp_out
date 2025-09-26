@@ -1,11 +1,14 @@
-extends Node
 class_name GameManager
+extends Node
 
 signal game_start
 signal game_end
 
 enum States { TITLE, PLAYER_SELECTION, GAME, END }
 
+@export var title_screen: PackedScene
+@export var player_select: PackedScene
+@export var arena: PackedScene
 @export var round_time_limit: float = 120.0
 @export var round_time_limit_warning: float = 10.0
 @export var max_ready_time: float = 10.0
@@ -33,8 +36,6 @@ func _ready() -> void:
 	add_child(timer)
 	ready_timer = get_node("ReadyTimer")
 
-	# spawn_points = get_tree().current_scene.get_children().filter(func(child: Node): return child is Node2D and child.name.contains("Spawn"))
-
 
 func _process(_delta: float) -> void:
 	if not ready_timer.is_stopped():
@@ -43,12 +44,24 @@ func _process(_delta: float) -> void:
 	match state:
 		States.TITLE:
 			if !get_tree().current_scene.name.contains("TitleScreen"):
-				get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
+				get_tree().change_scene_to_packed(title_screen)
 		States.PLAYER_SELECTION:
 			if !get_tree().current_scene.name.contains("PlayerSelect"):
-				get_tree().change_scene_to_file("res://scenes/player_select.tscn")
-		States.GAME:
-			pass
+				get_tree().change_scene_to_packed(player_select)
+		States.GAME: #TODO: Fix spawning.
+			if !get_tree().current_scene.name.contains("Arena"):
+				get_tree().change_scene_to_packed(arena)
+				spawn_points = get_tree().current_scene.get_children().filter(func(child: Node): return child is Node2D and child.name.contains("Spawn"))
+
+				for player_index in range(PM.players.size()):
+					if PM.players[player_index]["joined"]:
+						print("Player %d is spawning" % PM.players[player_index]["player_id"])
+						var monkey = PM.players[player_index]["monkey"]
+						var monkey_sprite = PM.players[player_index]["sprite"]
+						add_child(monkey)
+						monkey.global_position = spawn_points[player_index].global_position
+						monkey.visible = true
+						monkey.sprite_frames = monkey_sprite
 
 
 func _on_player_joined(player_id: int, device_id: int, _player_index: int) -> void:
