@@ -27,4 +27,10 @@ position = Vector2(542, 540)
 position = Vector2(538, 221)
 
 [node name="Spawn2" type="Node2D" parent="."]
-position = Vector2(548, 847)
+position = Vector2(538, 845)
+
+[node name="Spawn3" type="Node2D" parent="."]
+position = Vector2(248, 540)
+
+[node name="Spawn4" type="Node2D" parent="."]
+position = Vector2(826, 540)
