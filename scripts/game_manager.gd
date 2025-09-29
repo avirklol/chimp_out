@@ -18,8 +18,9 @@ var ready_players: int = 0
 var ready_timer: Timer
 var round_number: int = 1
 var max_rounds: int = 3
-var game_started: bool = false
-var game_ended: bool = false
+var match_started: bool = false
+var match_ended: bool = false
+var players_spawned: bool = false
 var spawn_points: Array[Node] = []
 
 
@@ -48,20 +49,24 @@ func _process(_delta: float) -> void:
 		States.PLAYER_SELECTION:
 			if !get_tree().current_scene.name.contains("PlayerSelect"):
 				get_tree().change_scene_to_packed(player_select)
-		States.GAME: #TODO: Fix spawning.
+		States.GAME:
 			if !get_tree().current_scene.name.contains("Arena"):
 				get_tree().change_scene_to_packed(arena)
-				spawn_points = get_tree().current_scene.get_children().filter(func(child: Node): return child is Node2D and child.name.contains("Spawn"))
+			else:
+				if !players_spawned:
+					spawn_points = get_tree().current_scene.get_children().filter(func(child: Node): return child is Node2D and child.name.contains("Spawn"))
 
-				for player_index in range(PM.players.size()):
-					if PM.players[player_index]["joined"]:
-						print("Player %d is spawning" % PM.players[player_index]["player_id"])
-						var monkey = PM.players[player_index]["monkey"]
-						var monkey_sprite = PM.players[player_index]["sprite"]
-						add_child(monkey)
-						monkey.global_position = spawn_points[player_index].global_position
-						monkey.visible = true
-						monkey.sprite_frames = monkey_sprite
+					for player_index in range(PM.players.size()):
+						if PM.players[player_index]["joined"]:
+							print("Player %d is spawning!" % PM.players[player_index]["player_id"])
+							var monkey = PM.players[player_index]["monkey"]
+							var monkey_sprite = PM.players[player_index]["sprite"]
+							add_child(monkey)
+							monkey.global_position = spawn_points[player_index].global_position
+							monkey.visible = true
+							monkey.animations.sprite_frames = monkey_sprite
+
+					players_spawned = true
 
 
 func _on_player_joined(player_id: int, device_id: int, _player_index: int) -> void:
