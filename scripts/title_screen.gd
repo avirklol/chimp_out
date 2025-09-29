@@ -34,7 +34,7 @@ func _move_pointer() -> void:
 
 
 func _process_selection() -> void:
-	if Input.is_action_just_pressed("start") or Input.is_action_just_pressed("select"):
+	if Input.is_action_just_pressed("select"):
 		match option_index:
 			0:
 				GM.state = GM.States.PLAYER_SELECTION
