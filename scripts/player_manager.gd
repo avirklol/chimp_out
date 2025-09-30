@@ -4,6 +4,8 @@ extends Node
 signal player_joined(player_id: int, device_id: int, player_index: int)
 signal player_left(player_id: int, player_index: int)
 signal player_ready(player_id: int, player_index: int, is_ready: bool)
+signal player_disconnected(player_id: int, player_index: int)
+signal player_reconnected(player_id: int, player_index: int)
 signal new_player_sprite(player_id: int, player_index: int, sprite: Resource)
 
 @export var sprite_sheets: Array[Dictionary] = []
@@ -20,10 +22,20 @@ func _ready() -> void:
 	var player_number: int = 1
 
 	for player in range(max_players):
-		players.append({ "player_id": player_number, "device_id": null, "joined": false, "ready": false, "monkey": null , "sprite": null, "points": 0})
+		players.append({
+			"player_id": player_number, "device_id": null, "joined": false, "ready": false,
+			"monkey": null, "sprite": null, "points": 0, "timer": null})
 		player_number += 1
 
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
+
+
+func _process(_delta: float) -> void:
+	for player in players:
+		if player["timer"]:
+			var timer = player["timer"]
+			print("Player %d Rejoin Timer: %d" % [player["player_id"], timer.time_left])
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	var device_id: int = event.device
@@ -86,10 +98,30 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_joy_connection_changed(device_id: int, connected: bool) -> void:
-	if !connected and device_player_map.has(device_id):
-		var player_id: int = device_player_map[device_id]
+	var player_id: int = _get_player_id(device_id)
+	var player_index: int = _get_player_index(player_id)
 
-		_remove_player(player_id, device_id)
+	if !connected and device_player_map.has(device_id):
+		var timer = Timer.new()
+		timer.name = "RemovePlayer%d" % player_id
+		timer.one_shot = true
+		timer.timeout.connect(func(): _remove_player(player_id, device_id))
+		timer.wait_time = 30.0
+		add_child(timer)
+		timer.start()
+
+		players[player_index]["timer"] = get_node_or_null(NodePath(timer.name))
+
+		player_disconnected.emit(player_id, player_index)
+	else:
+		if players[player_index]["timer"]:
+			var timer = players[player_index]["timer"]
+			timer.stop()
+			timer.queue_free()
+
+			players[player_index]["timer"] = null
+
+			player_reconnected.emit(player_id, player_index)
 
 
 func _remove_player(player_id: int, device_id: int) -> void:
@@ -100,7 +132,7 @@ func _remove_player(player_id: int, device_id: int) -> void:
 	players[player_index]["monkey"] = null
 	players[player_index]["sprite"] = null
 	players[player_index]["points"] = 0
-
+	players[player_index]["timer"] = null
 	device_player_map.erase(device_id)
 
 	for action in action_list:

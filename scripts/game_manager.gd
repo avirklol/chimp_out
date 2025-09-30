@@ -35,7 +35,7 @@ func _ready() -> void:
 	timer.timeout.connect(_on_ready_timer_timeout)
 	timer.wait_time = max_ready_time
 	add_child(timer)
-	ready_timer = get_node("ReadyTimer")
+	ready_timer = get_node_or_null(NodePath(timer.name))
 
 
 func _process(_delta: float) -> void:
@@ -77,8 +77,15 @@ func _on_player_joined(player_id: int, device_id: int, _player_index: int) -> vo
 		if ready_timer.time_left < ready_timer.wait_time:
 			ready_timer.start(ready_timer.time_left + 5.0)
 
+
 func _on_player_left(player_id: int, _player_index: int) -> void:
 	print("Player %d left!" % player_id)
+
+	if state == States.GAME:
+		var monkey = get_node_or_null("Player %d" % player_id)
+
+		if monkey:
+			monkey.queue_free()
 
 
 func _on_player_ready(player_id: int, _player_index: int, is_ready: bool) -> void:

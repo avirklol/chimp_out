@@ -9,6 +9,7 @@ enum States { IDLE, MOVING, JUMPING, STUNNED, RECOVERING }
 @export var aim_radius: float = 35
 
 var state: States = States.IDLE
+var disconnected: bool = false
 var rock_ready: bool = true
 var jump_ready: bool = true
 var player_id: int
@@ -24,10 +25,14 @@ var device_id: int
 
 
 func _ready() -> void:
-	add_to_group("monkey")
+	PM.player_disconnected.connect(_on_player_disconnected)
+	PM.player_reconnected.connect(_on_player_reconnected)
 	animations.animation_finished.connect(_on_animation_finished)
 	rock_timer.timeout.connect(_ready_rock)
 	jump_timer.timeout.connect(_ready_jump)
+
+	add_to_group("monkey")
+
 	set_collision_layer_value(player_id, true)
 
 
@@ -80,44 +85,48 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	var direction = IH.move_direction(player_id)
 
-	match state:
-		States.MOVING:
-			if direction == Vector2(-1, 1):
-				animations.play("down_left")
-			elif direction == Vector2(1, 1):
-				animations.play("down_right")
-			elif direction == Vector2(1, -1):
-				animations.play("up_right")
-			elif direction == Vector2(-1, -1):
-				animations.play("up_left")
-			elif direction == Vector2(0, 1):
-				animations.play("down")
-			elif direction == Vector2(0, -1):
-				animations.play("up")
-			elif direction == Vector2(1, 0):
-				animations.play("right")
-			elif direction == Vector2(-1, 0):
-				animations.play("left")
-		States.JUMPING:
-			animations.play("idle")
-		States.IDLE:
-			animations.play("idle")
-		States.STUNNED:
-			animations.play("stunned")
-		States.RECOVERING:
-			animations.play("recovering")
+	if !disconnected:
+		match state:
+			States.MOVING:
+				if direction == Vector2(-1, 1):
+					animations.play("down_left")
+				elif direction == Vector2(1, 1):
+					animations.play("down_right")
+				elif direction == Vector2(1, -1):
+					animations.play("up_right")
+				elif direction == Vector2(-1, -1):
+					animations.play("up_left")
+				elif direction == Vector2(0, 1):
+					animations.play("down")
+				elif direction == Vector2(0, -1):
+					animations.play("up")
+				elif direction == Vector2(1, 0):
+					animations.play("right")
+				elif direction == Vector2(-1, 0):
+					animations.play("left")
+			States.JUMPING:
+				animations.play("idle")
+			States.IDLE:
+				animations.play("idle")
+			States.STUNNED:
+				animations.play("stunned")
+			States.RECOVERING:
+				animations.play("recovering")
 
-	var aim_dir: Vector2 = IH.aim_direction(player_id)
+		var aim_dir: Vector2 = IH.aim_direction(player_id)
 
-	if aim_dir != Vector2.ZERO:
-		crosshair.visible = true
-		crosshair.global_position = global_position + aim_dir.normalized() * aim_radius
+		if aim_dir != Vector2.ZERO:
+			crosshair.visible = true
+			crosshair.global_position = global_position + aim_dir.normalized() * aim_radius
+		else:
+			crosshair.visible = false
+			if direction != Vector2.ZERO:
+				crosshair.global_position = global_position + direction * aim_radius
+			else:
+				crosshair.global_position = Vector2(global_position.x, global_position.y + aim_radius)
 	else:
 		crosshair.visible = false
-		if direction != Vector2.ZERO:
-			crosshair.global_position = global_position + direction * aim_radius
-		else:
-			crosshair.global_position = Vector2(global_position.x, global_position.y + aim_radius)
+		animations.play("idle")
 
 # TODO: Fix mouse input!
 		# var mouse_pos: Vector2 = IH.mouse_position()
@@ -162,3 +171,36 @@ func _throw_rock() -> void:
 
 func _can_throw_rock() -> bool:
 	return rock_ready and !crosshair_wall_check.is_colliding() and state != States.JUMPING
+
+
+func _on_player_disconnected(p_id: int, _player_index: int) -> void:
+	if p_id == self.player_id:
+		_disable_player(true)
+
+		var timer = Timer.new()
+		timer.name = "DisconnectedTimer"
+		timer.wait_time = 0.7
+		timer.one_shot = false
+		timer.timeout.connect(func():
+			self.visible = !self.visible
+		)
+		add_child(timer)
+		timer.start()
+
+
+func _on_player_reconnected(p_id: int, _player_index: int) -> void:
+	if p_id == self.player_id:
+		var disconnected_timer = get_node_or_null("DisconnectedTimer")
+
+		if disconnected_timer:
+			disconnected_timer.stop()
+			disconnected_timer.queue_free()
+
+		_disable_player(false)
+
+
+func _disable_player(disabled: bool) -> void:
+	disconnected = disabled
+	collision_shape.disabled = disabled
+	self.visible = !disabled
+	self.z_index = 1 if disabled else 2
