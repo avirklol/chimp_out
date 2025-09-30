@@ -1,13 +1,8 @@
-extends RigidBody2D
 class_name Rock
+extends RigidBody2D
 
 @export var throw_strength: float = 900
 @export var max_distance: float = 300
-
-@onready var hit_area: Area2D = $HitArea
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var column_check: ShapeCast2D = $ColumnCheck
-
 
 var parent: Monkey
 var states:= Monkey.States
@@ -15,6 +10,10 @@ var direction: Vector2
 var start_position: Vector2
 var final_velocity: Vector2
 var thrown: bool
+
+@onready var hit_area: Area2D = $HitArea
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var column_check: ShapeCast2D = $ColumnCheck
 
 
 func _ready() -> void:
