@@ -14,8 +14,9 @@ radius = 2.5
 [sub_resource type="CircleShape2D" id="CircleShape2D_872ht"]
 
 [node name="Rock" type="RigidBody2D"]
+z_index = 1
 collision_layer = 16
-collision_mask = 47
+collision_mask = 63
 physics_material_override = SubResource("PhysicsMaterial_872ht")
 script = ExtResource("2_ik6fu")
 
@@ -43,4 +44,4 @@ debug_color = Color(0.7303, 0.352313, 0.803392, 0.42)
 scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_872ht")
 target_position = Vector2(0, 0)
-collision_mask = 64
+collision_mask = 32
