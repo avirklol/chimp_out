@@ -1,6 +1,8 @@
 class_name Monkey
 extends CharacterBody2D
 
+signal rock_thrown(player_id: int, rocks: int)
+
 enum States { IDLE, MOVING, JUMPING, STUNNED, RECOVERING }
 
 @export var rocks: int = 3
@@ -14,6 +16,7 @@ var rock_ready: bool = true
 var jump_ready: bool = true
 var player_id: int
 var device_id: int
+var points: int = 0
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animations: AnimatedSprite2D = $AnimatedSprite2D
@@ -53,19 +56,20 @@ func _on_animation_finished() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if state in [States.STUNNED, States.RECOVERING]:
-		return
+	if GM.match_started:
+		if state in [States.STUNNED, States.RECOVERING]:
+			return
 
-	if IH.move_direction(player_id) != Vector2.ZERO:
-		if !Input.is_action_pressed("jump"):
-			state = States.MOVING
+		if IH.move_direction(player_id) != Vector2.ZERO:
+			if !Input.is_action_pressed("jump"):
+				state = States.MOVING
+			else:
+				state = States.JUMPING
 		else:
-			state = States.JUMPING
-	else:
-		state = States.IDLE
+			state = States.IDLE
 
-	if IH.throw_rock(player_id) and _can_throw_rock():
-		_throw_rock()
+		if IH.throw_rock(player_id) and _can_throw_rock():
+			_throw_rock()
 
 
 func _physics_process(delta: float) -> void:
@@ -138,7 +142,7 @@ func _move(_delta: float) -> void:
 	velocity = IH.move_direction(player_id) * speed
 	move_and_slide()
 
-
+# TODO: Add jump animation and movement
 func _jump(_delta: float) -> void:
 	pass
 
@@ -167,6 +171,8 @@ func _throw_rock() -> void:
 		rock_instance.throw(self)
 		rock_ready = false
 		rock_timer.start()
+
+		GM.rock_thrown.emit(player_id, rocks)
 
 
 func _can_throw_rock() -> bool:

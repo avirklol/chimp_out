@@ -10,3 +10,4 @@ script = ExtResource("1_udu3i")
 title_screen = ExtResource("2_oo155")
 player_select = ExtResource("3_eaq8r")
 arena = ExtResource("4_ternb")
+max_ready_time = 1.0

@@ -3,6 +3,9 @@ extends Node
 
 signal game_start
 signal game_end
+signal rock_thrown(player_id: int, rocks: int)
+signal rock_picked_up(player_id: int, rocks: int)
+signal points_changed(player_id: int, points: int)
 
 enum States { TITLE, PLAYER_SELECTION, GAME, END }
 
@@ -16,12 +19,17 @@ enum States { TITLE, PLAYER_SELECTION, GAME, END }
 var state: States = States.TITLE
 var ready_players: int = 0
 var ready_timer: Timer
+var round_timer: Timer
+var round_timer_label: RichTextLabel
 var round_number: int = 1
 var max_rounds: int = 3
 var match_started: bool = false
 var match_ended: bool = false
 var players_spawned: bool = false
 var spawn_points: Array[Node] = []
+var player_stats: Array[Node] = []
+
+@onready var ui_scene: PackedScene = preload("res://scenes/user_interface.tscn")
 
 
 func _ready() -> void:
@@ -53,20 +61,54 @@ func _process(_delta: float) -> void:
 			if !get_tree().current_scene.name.contains("Arena"):
 				get_tree().change_scene_to_packed(arena)
 			else:
+
 				if !players_spawned:
+					var ui = ui_scene.instantiate()
+					add_child(ui)
+					ui.z_index = 100
+
+					player_stats = ui.stats.get_children()
+					round_timer_label = ui.round_timer
 					spawn_points = get_tree().current_scene.get_children().filter(func(child: Node): return child is Node2D and child.name.contains("Spawn"))
 
 					for player_index in range(PM.players.size()):
 						if PM.players[player_index]["joined"]:
-							print("Player %d is spawning!" % PM.players[player_index]["player_id"])
-							var monkey = PM.players[player_index]["monkey"]
-							var monkey_sprite = PM.players[player_index]["sprite"]
+							var player = PM.players[player_index]
+							var stats = player_stats[player_index]
+							var stat_sprite = AnimatedSprite2D.new()
+							var monkey = player["monkey"]
+							var monkey_sprite = player["sprite"]
+
 							add_child(monkey)
 							monkey.global_position = spawn_points[player_index].global_position
 							monkey.visible = true
 							monkey.animations.sprite_frames = monkey_sprite
 
+							stats.visible = true
+							stats.player_id = player["player_id"]
+							stats.rocks.text = "rks: %d" % monkey.rocks
+							stats.points.text = "pts: %d" % monkey.points
+
+							stats.sprite_location.add_child(stat_sprite)
+							stat_sprite.sprite_frames = monkey_sprite
+							stat_sprite.animation = "idle"
+							stat_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+							stat_sprite.scale = Vector2(2, 2)
+
+							print("Player %d is spawning!" % player["player_id"])
+
+					round_timer = Timer.new()
+					round_timer.name = "MatchStartTimer"
+					round_timer.one_shot = true
+					round_timer.timeout.connect(func(): _on_match_start_timer_timeout())
+					round_timer.wait_time = 5.0
+					add_child(round_timer)
+					round_timer.start()
+
 					players_spawned = true
+
+
+				round_timer_label.text = "%d" % int(round_timer.time_left)
 
 
 func _on_player_joined(player_id: int, device_id: int, _player_index: int) -> void:
@@ -108,3 +150,27 @@ func _on_player_ready(player_id: int, _player_index: int, is_ready: bool) -> voi
 
 func _on_ready_timer_timeout() -> void:
 	state = States.GAME
+
+
+func _on_match_start_timer_timeout() -> void:
+	match_started = true
+	round_timer.queue_free()
+	round_timer = Timer.new()
+	round_timer.name = "RoundTimer"
+	round_timer.one_shot = true
+	round_timer.timeout.connect(func(): _on_round_timer_timeout())
+	round_timer.wait_time = round_time_limit
+	add_child(round_timer)
+	round_timer.start()
+
+# TODO: Add round end logic
+func _on_round_timer_timeout() -> void:
+	round_number += 1
+	round_timer.queue_free()
+	round_timer = Timer.new()
+	round_timer.name = "RoundTimer"
+	round_timer.one_shot = true
+	round_timer.timeout.connect(func(): _on_round_timer_timeout())
+	round_timer.wait_time = round_time_limit
+	add_child(round_timer)
+	round_timer.start()

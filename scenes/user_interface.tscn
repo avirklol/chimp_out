@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://cww2er4l85hc6"]
+
+[ext_resource type="PackedScene" uid="uid://cm260q04n4urt" path="res://scenes/player_stats.tscn" id="1_syvep"]
+[ext_resource type="Script" uid="uid://dkwyhh5koy12j" path="res://scripts/user_interface.gd" id="1_y1h3b"]
+[ext_resource type="Theme" uid="uid://b007pb701cwk5" path="res://themes/basic_titles.tres" id="2_l2bgj"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_y1h3b")
+
+[node name="Stats" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="P1" parent="Stats" instance=ExtResource("1_syvep")]
+visible = false
+layout_mode = 0
+offset_left = 326.5
+offset_top = 16.0
+offset_right = 434.5
+offset_bottom = 137.0
+size_flags_horizontal = 3
+
+[node name="P2" parent="Stats" instance=ExtResource("1_syvep")]
+visible = false
+layout_mode = 0
+offset_left = 644.5
+offset_top = 16.0
+offset_right = 753.5
+offset_bottom = 137.0
+size_flags_horizontal = 3
+
+[node name="P3" parent="Stats" instance=ExtResource("1_syvep")]
+visible = false
+layout_mode = 0
+offset_left = 327.0
+offset_top = 948.0
+offset_right = 435.0
+offset_bottom = 1069.0
+size_flags_horizontal = 3
+
+[node name="P4" parent="Stats" instance=ExtResource("1_syvep")]
+visible = false
+layout_mode = 0
+offset_left = 645.0
+offset_top = 948.0
+offset_right = 754.0
+offset_bottom = 1069.0
+size_flags_horizontal = 3
+
+[node name="RoundTimer" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 13.362
+anchor_top = 1.0
+anchor_right = 13.362
+anchor_bottom = 1.0
+offset_left = -48.48
+offset_top = 9.0
+offset_right = 51.52
+offset_bottom = 64.0
+grow_horizontal = 2
+theme = ExtResource("2_l2bgj")
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "1:20
+"
+horizontal_alignment = 1
+vertical_alignment = 1

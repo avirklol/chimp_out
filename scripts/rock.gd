@@ -37,6 +37,8 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 				body.rocks += 1
 				queue_free()
 
+				GM.rock_picked_up.emit(body.player_id, body.rocks)
+
 
 func _physics_process(_delta: float) -> void:
 	if thrown:
