@@ -56,7 +56,7 @@ func _on_animation_finished() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if GM.match_started:
+	if GM.match_started and !disconnected:
 		if state in [States.STUNNED, States.RECOVERING]:
 			return
 
@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	var direction = IH.move_direction(player_id)
 
-	if !disconnected:
+	if GM.match_started and !disconnected:
 		match state:
 			States.MOVING:
 				if direction == Vector2(-1, 1):
