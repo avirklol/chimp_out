@@ -24,7 +24,7 @@ func _ready() -> void:
 	for player in range(max_players):
 		players.append({
 			"player_id": player_number, "device_id": null, "joined": false, "ready": false,
-			"monkey": null, "sprite": null, "points": 0, "timer": null})
+			"monkey": null, "sprite": null, "points": 0, "hits_landed": 0, "hits_taken": 0, "timer": null})
 		player_number += 1
 
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
