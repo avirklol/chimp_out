@@ -6,8 +6,9 @@
 
 [node name="PlayerStats" type="NinePatchRect"]
 texture_filter = 3
+offset_top = -1.0
 offset_right = 140.0
-offset_bottom = 120.0
+offset_bottom = 119.0
 texture = ExtResource("1_esxkt")
 patch_margin_left = 1
 patch_margin_top = 1
