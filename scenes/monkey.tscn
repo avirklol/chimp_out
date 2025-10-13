@@ -1,14 +1,86 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2k3qwp7esmrd"]
+[gd_scene load_steps=17 format=3 uid="uid://d2k3qwp7esmrd"]
 
 [ext_resource type="Script" uid="uid://wpknemba467p" path="res://scripts/monkey.gd" id="1_aubuo"]
 [ext_resource type="SpriteFrames" uid="uid://cwc6wayi47sck" path="res://assets/monkey/spriteframes/monkey_6.tres" id="2_wpyu8"]
 [ext_resource type="Texture2D" uid="uid://harf0jdyh4in" path="res://assets/monkey/crosshair.png" id="4_2l80e"]
+[ext_resource type="Texture2D" uid="uid://cieqo40eb3heb" path="res://assets/ui/CooldownIndicator.png" id="4_gsqvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yqeq"]
 size = Vector2(13.5, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gsqvd"]
 radius = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x11h5"]
+atlas = ExtResource("4_gsqvd")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nandu"]
+atlas = ExtResource("4_gsqvd")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irmjr"]
+atlas = ExtResource("4_gsqvd")
+region = Rect2(18, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0hpa"]
+atlas = ExtResource("4_gsqvd")
+region = Rect2(27, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q8wh"]
+atlas = ExtResource("4_gsqvd")
+region = Rect2(36, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl0m1"]
+atlas = ExtResource("4_gsqvd")
+region = Rect2(45, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mae1k"]
+atlas = ExtResource("4_gsqvd")
+region = Rect2(54, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffw2m"]
+atlas = ExtResource("4_gsqvd")
+region = Rect2(63, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x6l4"]
+atlas = ExtResource("4_gsqvd")
+region = Rect2(72, 0, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpyu8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x11h5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nandu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irmjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0hpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q8wh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl0m1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mae1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffw2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x6l4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Monkey" type="CharacterBody2D"]
 z_index = 2
@@ -49,3 +121,11 @@ collision_mask = 32
 wait_time = 2.0
 
 [node name="JumpTimer" type="Timer" parent="."]
+
+[node name="CooldownProgress" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+position = Vector2(15.75, 51.75)
+scale = Vector2(5.16667, 4.94444)
+sprite_frames = SubResource("SpriteFrames_wpyu8")
+frame = 8
+frame_progress = 0.999301
