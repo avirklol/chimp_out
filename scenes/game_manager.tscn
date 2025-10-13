@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://clke6n4spr0ba"]
+[gd_scene load_steps=7 format=3 uid="uid://clke6n4spr0ba"]
 
 [ext_resource type="Script" uid="uid://21t74wfvnpj3" path="res://scripts/game_manager.gd" id="1_udu3i"]
 [ext_resource type="PackedScene" uid="uid://b8oc0bmjpu6aa" path="res://scenes/title_screen.tscn" id="2_oo155"]
 [ext_resource type="PackedScene" uid="uid://fywen4goslwu" path="res://scenes/player_select.tscn" id="3_eaq8r"]
+[ext_resource type="PackedScene" uid="uid://5gkq0jbhym5d" path="res://scenes/round_title.tscn" id="4_q8mjp"]
 [ext_resource type="PackedScene" uid="uid://d3h0sn8cyfi8n" path="res://scenes/arena.tscn" id="4_ternb"]
+[ext_resource type="PackedScene" uid="uid://cww2er4l85hc6" path="res://scenes/user_interface.tscn" id="5_jdad8"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_udu3i")
 title_screen = ExtResource("2_oo155")
-player_select = ExtResource("3_eaq8r")
+player_select_screen = ExtResource("3_eaq8r")
+round_title_screen = ExtResource("4_q8mjp")
+user_interface = ExtResource("5_jdad8")
 arena = ExtResource("4_ternb")
+round_time_limit = 5.0
 max_ready_time = 1.0
