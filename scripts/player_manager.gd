@@ -100,23 +100,22 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_joy_connection_changed(device_id: int, connected: bool) -> void:
 	var player_id: int = _get_player_id(device_id)
 	var player_index: int = _get_player_index(player_id)
-	var timer: Timer
+	var timer: Timer = players[player_index]["timer"]
 
 	if !connected and device_player_map.has(device_id):
 		timer = Timer.new()
 		timer.name = "RemovePlayer%d" % player_id
 		timer.one_shot = true
-		timer.timeout.connect(func(): _remove_player(player_id, device_id))
 		timer.wait_time = 30.0
+		timer.timeout.connect(func(): _remove_player(player_id, device_id))
 		add_child(timer)
 		timer.start()
 
-		players[player_index]["timer"] = get_node_or_null(NodePath(timer.name))
+		players[player_index]["timer"] = timer
 
 		player_disconnected.emit(player_id, player_index)
 	else:
-		if players[player_index]["timer"]:
-			timer = players[player_index]["timer"]
+		if timer:
 			timer.stop()
 			timer.queue_free()
 
